@@ -1,10 +1,9 @@
 void  CTest_Algorithm::POI_EventExtend(POI_NODETYPEARRAY &AllNode,POI_SEGTYPEARRAY &AllSeg, POI_CELLTYPEARRAY &AllCell,POI_EVENTTYPEARRAY &AllEvent)
 {
-     POI_SEGTYPE s0,s1;  POI_CELLTYPE c0,c1,c2,c3; POI_NODETYPE n0; 
-     POI_EVENTTYPE e;
-     long i,j,k,nt,next,nc,m;
+     POI_SEGTYPE s0,s1;  POI_CELLTYPE c0,c1; POI_NODETYPE n0; POI_EVENTTYPE e;
+     long i,j,k,nt,nc;
      LONGARRAY e_extendCell; 
-     CHARARRAY e_direction;  int e_extends;   int AllHappen=0;
+     CHARARRAY e_direction;  int e_extends;
      for(i=0;i<AllEvent.GetSize();i++)
      {
         e=AllEvent.GetAt(i);
@@ -73,7 +72,7 @@ void  CTest_Algorithm::POI_EventExtend(POI_NODETYPEARRAY &AllNode,POI_SEGTYPEARR
 		 }
 	      }
 	   }  //  end of all active extending point of one event
-	   if(happen==0)  e.stop=true;   if(happen==1) AllHappen=1;
+	   if(happen==0)  e.stop=true;
 	   e.extends=e_extendCell.GetSize();
 	   if(e.extendCell) 
 	   {  delete[] e.extendCell; e.extendCell=NULL;  e.extendCell=new int[e.extends];
@@ -84,5 +83,5 @@ void  CTest_Algorithm::POI_EventExtend(POI_NODETYPEARRAY &AllNode,POI_SEGTYPEARR
 	   e_extendCell.RemoveAll();  e_direction.RemoveAll();
 	   e.extends=e_extends;
 	   AllEvent.SetAt(i,e);		
-       }
+      }
 }
